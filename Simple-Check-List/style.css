@@ -11,7 +11,7 @@ body {
    
   #taskContainer { 
     width: 800px; 
-    background-color: #fff; 
+    background-color:aliceblue; 
     border-radius: 8px; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
     padding: 20px; 
@@ -77,7 +77,7 @@ body {
    
   .deleteBtn { 
     background-color: #dc3545; 
-    color: #fff; 
+    color: #ff0000; 
     border: none; 
     border-radius: 5px; 
     padding: 5px 10px; 
@@ -88,3 +88,39 @@ body {
     background-color: #d32f2f; 
     }  
 
+
+.task-item {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.task-text {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+.checklist-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.check-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+/* Personalización del estado */
+.hecho {
+  background-color: #90ee90;
+}
+.por-hacer {
+  background-color: #e4e46a;
+}
+.sin-hacer {
+  background-color: #ffcccb;;
+}

@@ -1,81 +1,88 @@
-// Seleccionar elementos del DOM 
-const newTaskInput = document.getElementById('newTaskInput'); //tarea
-const addTaskBtn = document.getElementById('addTaskBtn'); //boton
-const taskList = document.getElementById('taskList'); //lista
+const newTaskInput = document.getElementById('newTaskInput'); 
+const addTaskBtn = document.getElementById('addTaskBtn'); 
+const taskList = document.getElementById('taskList'); 
+const mensaje = document.getElementById('mensaje');
 
-// Función para agregar una nueva tarea 
 function addTask() {
-    console.log(newTaskInput.value)
-    if (newTaskInput.value != '') {
+    if (newTaskInput.value.trim() !== '') {
         let li = document.createElement("li");
+        li.classList.add("task-item"); // 👈 Clase para el <li>
+
         let p = document.createElement("p");
-        let tarea = newTaskInput.value;
-        p.textContent = tarea;
+        p.textContent = newTaskInput.value.trim();
+        p.classList.add("task-text"); // 👈 Clase para el texto
         li.appendChild(p);
+
+        // Grupo de opciones
+        const grupoOpciones = document.createElement("div");
+        grupoOpciones.classList.add("checklist-group"); // 👈 Agrupa las 3 opciones
+
+        const opciones = [
+            { texto: "Hecho", color: "green", clase: "hecho" },
+            { texto: "Por hacer", color: "yellow", clase: "por-hacer" },
+            { texto: "Sin hacer", color: "red", clase: "sin-hacer" }
+        ];
+
+        const grupoNombre = "grupo_" + Date.now();
+
+        opciones.forEach(opcion => {
+            const div = document.createElement("div");
+            div.classList.add("check-option"); // 👈 Cada checkbox + label
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = grupoNombre;
+            checkbox.dataset.color = opcion.color;
+            checkbox.classList.add("task-checkbox"); // 👈 Checkbox clase
+
+            checkbox.addEventListener("change", () => {
+                if (checkbox.checked) {
+                    const todos = li.querySelectorAll(`input[name="${grupoNombre}"]`);
+                    todos.forEach(cb => {
+                        if (cb !== checkbox) cb.checked = false;
+                    });
+
+                    // Limpiar clases previas de estado
+                    li.classList.remove("hecho", "por-hacer", "sin-hacer");
+                    li.classList.add(opcion.clase); // 👈 Agrega clase según estado
+                } else {
+                    li.classList.remove(opcion.clase);
+                }
+            });
+
+            checkbox.addEventListener("click", (e) => {
+                if (e.offsetX > 20) {
+                    e.preventDefault();
+                }
+            });
+
+            const label = document.createElement("label");
+            label.textContent = opcion.texto;
+            label.classList.add("task-label"); // 👈 Label clase
+
+            div.appendChild(label); // Primero el texto
+            div.appendChild(checkbox); // Después el cuadrado
+            grupoOpciones.appendChild(div);
+        });
+
+        li.appendChild(grupoOpciones);
         taskList.appendChild(li);
+
         newTaskInput.value = '';
         mensaje.textContent = "ITEM AGREGADO";
         mensaje.style.color = "green";
-        agregarCheckboxEstado(li)
-    }
-    else {
+    } else {
         mensaje.textContent = "INGRESE UN ITEM!!";
         mensaje.style.color = "red";
     }
 }
 
-// Esta función agrega los checkboxes al <li> recibido
-function agregarCheckboxEstado(li) {
-    const estados = ['Hecho', 'En-proceso', 'Sin-hacer'];
-    const checkboxes = [];
-
-    estados.forEach(estado => {
-        const label = document.createElement('label');
-        label.style.marginRight = '10px';
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = estado;
-
-    // Evento: cuando se marca un checkbox
-    checkbox.addEventListener('change', () => {
-        // Desmarcar los otros
-        checkboxes.forEach(c => {
-            if (c !== checkbox) c.checked = false;
-        });
-
-        // Cambiar color según cuál está marcado
-        if (checkbox.checked) {
-            if (checkbox.value === 'Hecho') {
-                li.style.backgroundColor = 'palegreen ';
-            } else if (checkbox.value === 'En-proceso') {
-                li.style.backgroundColor = 'lightblue';
-            } else if (checkbox.value === 'Sin-hacer') {
-                li.style.backgroundColor = 'lightcoral';
-            }
-        } else {
-        // Si se desmarcan todos, quitar color
-            li.style.backgroundColor = '';
-        }
-    });
-
-    checkboxes.push(checkbox);
-
-    label.appendChild(checkbox);
-    label.append(' ' + estado);
-    li.appendChild(label);
-    });
-}
-
-// Agregar evento al botón de agregar tarea 
 addTaskBtn.addEventListener('click', addTask);
-// Agregar evento para detectar Enter en el input
 newTaskInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         addTask();
     }
 });
-
 
 
 /*Completa el código JavaScript para agregar tareas a la lista cuando se hace 
