@@ -1,0 +1,146 @@
+/* Caja principal */
+
+@font-face {
+  font-family: 'Dongle';
+  src: url('fonts/Dongle/Dongle-Light.ttf') format('truetype');
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Dongle', sans-serif;
+    font-size: 36px; /* tamaño base recomendado */
+    line-height: 1.5; /* para que no se vea tan apretado */
+    background-color: #C2C6CE;
+    color:#0F1C30 ;
+} 
+
+#box {
+  display: flex;
+  flex-direction: column; /* Selector arriba y inputs abajo */
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Bloque del selector */
+#selectores {
+  text-align: center;}
+  
+select {
+    font-family: 'Dongle', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding: 1px 1px;
+    border: 1px solid #f90303;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    
+}
+
+select option {
+    font-family: 'Dongle', sans-serif;
+    font-size: 30px;
+    color: #000000;
+    background-color: #fff;
+}
+
+
+/* Bloque de inputs en fila */
+#inputs {
+  display: flex;
+  flex-direction: row;  /* Los pone uno al lado del otro */
+  align-items: center;  /* Centra verticalmente con la x */
+  justify-content: center;
+  gap: 10px;            /* Espacio entre input y la x */
+}
+
+#inputs p {
+  margin: 0;
+  font-size:70px;
+}
+
+input {
+  font-size: 30px;
+}
+
+
+.tipomed {
+  text-align: left;
+  padding: 0;
+  background-color: #C2C6CE
+}
+
+
+
+footer {
+      background-color:#304A6E;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 10%;
+      font-size: 30px;
+    }
+
+
+@media (max-width: 768px) {
+  body {
+    font-size: 24px; 
+  }
+
+  #inputs {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #inputs p {
+    font-size: 40px; 
+  }
+
+  input {
+    font-size: 24px;
+    width: 90%;
+  }
+
+  select {
+    font-size: 24px;
+    width: 90%;
+  }
+
+  footer {
+    font-size: 20px;
+    height: auto; 
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 20px;
+  }
+
+  #inputs p {
+    font-size: 30px;
+  }
+
+  input {
+    font-size: 20px;
+  }
+
+  select {
+    font-size: 20px;
+  }
+
+  footer {
+    font-size: 18px;
+  }
+}

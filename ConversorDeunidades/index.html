@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    
+    <title>Conversor de Unidades</title>
+  </head>
+  <body>
+    <header><h1>Conversor de medidas</h1></header>
+
+    <main>
+      <div class='fondo'>
+        <div class='wave -one'></div>
+        <div class='wave -two'></div>
+        <div class='wave -three'></div>
+      </div>
+      <section>
+        <div id="box">
+          <div id="selectores">
+            <label for="opciones">Slecciona una convercion</label>
+            <select id="opciones" name="opciones">
+
+                <option value="0" selected disabled hidden id="Med" >Medidas</option>
+                <option value=""  disabled class="tipomed" >Masa/Peso</option>
+                <option value="1" >kg-lb</option>
+                <option value="2">g-oz</option>
+
+                <option value="" disabled class="tipomed" >Longitud/distancia</option>
+                <option value="3">cm-in</option>
+                <option value="4">m-ft</option>
+                <option value="5">m-yd</option>
+                <option value="6">km-mi</option>
+
+                <option value="" disabled class="tipomed">Volumen</option>
+                <option value="7">l-gal(us)</option>
+
+                <option value="" disabled class="tipomed">Temperatura</option>
+                <option value="8" >Cel-Farent</option>
+            </select>
+
+          </div>
+          <div class="ingresos" id="inputs">
+            <p id="p1">x</p>
+            <input type="number" id="inputA"  step="any" />
+            <svg xmlns="http://www.w3.org/2000/svg" id="flecha" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+            class="flecha"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>
+            
+
+            <p id="p2">x</p>
+            <input type="number" id="inputB"  step="any" />
+          </div>
+            <label>
+              <input type="checkbox" id="redondear"> Numeros redondeados
+            </label>
+        </div>
+      </section>
+      
+    </main>
+
+
+    
+    <script src="script.js"></script>
+
+  </body>
+
+  <footer>
+    © Todos los derechos reservados.
+  </footer>
+</html>
