@@ -88,6 +88,7 @@ function multiplica(factor1,factor2 ){
         const numero = parseFloat(inputA.value);
         if (!isNaN(numero)){
             if(check.checked){
+                
                 inputB.value = (numero * factor1).toFixed(2); 
 
             }else{
@@ -141,8 +142,14 @@ function temperatura(){
     inputA.oninput = function () {
         var c = parseFloat(inputA.value)
         if (!isNaN(c)){
-            inputB.value = (c*1.8) + 32;
-            inputC.value = (c + 273.15);
+            if(check.checked){
+                inputB.value = ((c*1.8) + 32).toFixed(2);
+                inputC.value = (c + 273.15).toFixed(2);
+
+            }else{
+                inputB.value = (c*1.8) + 32;
+                inputC.value = (c + 273.15);
+            }
         }else {
             inputB.value = "";
             inputC.value = "";
@@ -155,7 +162,7 @@ function temperatura(){
         var f = parseFloat(inputB.value)
         if (!isNaN(f)){ 
             if(check.checked){
-                inputA.value = (f-32) * (5/9);
+                inputA.value = ((f-32) * (5/9)).toFixed(2);
                 inputC.value = ((f-32) * (5/9) + 273.15).toFixed(2);
 
             }else{
@@ -176,11 +183,12 @@ function temperatura(){
         var k = parseFloat(inputC.value)
         if (!isNaN(k)){
             if(check.checked){
-                inputB.value = ((k - 273.15) * (9/5)+ 32).toFixed(2);
                 inputA.value = (k - 273.15).toFixed(2);
+                inputB.value = ((k - 273.15) * (9/5)+ 32).toFixed(2);
+
             }else{
-                inputB.value = ((k - 273.15) * (9/5)+ 32).toFixed(2);
-                inputA.value = (k - 273.15).toFixed(2);
+                inputB.value = ((k - 273.15) * (9/5)+ 32);
+                inputA.value = (k - 273.15);
             }
         }else {
             inputB.value = "";
@@ -210,12 +218,14 @@ check.addEventListener("change", function () {
     const a = parseFloat(inputA.value);
     const b = parseFloat(inputB.value);
     const c = document.getElementById("inputC");
-
     if (!isNaN(a)) {
         inputA.oninput();
+        if (check.checked){ inputA.value = a.toFixed(2);} 
     } else if (!isNaN(b)) {
         inputB.oninput(); 
+        if (check.checked) inputB.value = b.toFixed(2);
     } else if (c && !isNaN(parseFloat(c.value))) {
         c.oninput();
+        if (check.checked) c.value = parseFloat(c.value).toFixed(2);
     }
 });
